@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common">Nein nein nein</string>
+    <!--comment-->
+    <string name="different">Different name de</string>
+    <string name="watt" othertag="true">"Very long string of text
+and optional enters ja ja ja ja ja"</string>
+    <string name="watt2">"Very long string of text
+and optional enters, dsssaassadsadsadasdasdasdasdasdasda"</string>
+    <string-array name="types">
+        <item>100% / 0%</item>
+        <item>75% / 25%</item>
+        <item>50% / 50%</item>
+        <item>25% / 75%</item>
+        <item>0% / 100%</item>
+    </string-array>
+    <plurals name="unitCyclePlurals">
+        <item quantity="one">%d cyclen</item>
+        <item quantity="other">%d cyclon B</item>
+    </plurals>
+</resources>

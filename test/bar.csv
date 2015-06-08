@@ -1,0 +1,14 @@
+"name","english"
+"common","Common name"
+"different","Different name"
+"watt","""Very long string of text
+and optional enters"""
+"watt2","""Very long string of text
+and optional enters"""
+"string-array@types@#0","100% / 0%"
+"string-array@types@#1","75% / 25%"
+"string-array@types@#2","50% / 50%"
+"string-array@types@#3","25% / 75%"
+"string-array@types@#4","0% / 100%"
+"plurals@unitCyclePlurals@quantity=one","%d cycle"
+"plurals@unitCyclePlurals@quantity=other","%d cycles"

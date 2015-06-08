@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="common">Common name</string>
+    <string name="different">Different name</string>
+    <string name="watt">"Very long string of text
+and optional enters"</string>
+    <string name="watt2">"Very long string of text
+and optional enters"</string>
+    <string-array name="types">
+        <item>100% / 0%</item>
+        <item>75% / 25%</item>
+        <item>50% / 50%</item>
+        <item>25% / 75%</item>
+        <item>0% / 100%</item>
+    </string-array>
+    <plurals name="unitCyclePlurals">
+        <item quantity="one">%d cycle</item>
+        <item quantity="other">%d cycles</item>
+    </plurals>
+</resources>

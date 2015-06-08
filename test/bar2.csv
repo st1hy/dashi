@@ -1,0 +1,17 @@
+"name","german","english"
+"common","Nein nein nein","Common name"
+"different","Different name de","Different name"
+"watt","""Very long string of text
+and optional enters ja ja ja ja ja""","""Very long string of text
+and optional enters"""
+"watt2","""Very long string of text
+and optional enters, dsssaassadsadsadasdasdasdasdasdasda""","""Very long string of text
+and optional enters"""
+"string-array@types@#0","100% / 0%","100% / 0%"
+"string-array@types@#1","75% / 25%","75% / 25%"
+"string-array@types@#2","50% / 50%","50% / 50%"
+"string-array@types@#3","25% / 75%","25% / 75%"
+"string-array@types@#4","0% / 100%","0% / 100%"
+"plurals@unitCyclePlurals@quantity=one","%d cyclen","%d cycle"
+"plurals@unitCyclePlurals@quantity=other","%d cyclon B","%d cycles"
+"different2","","Different nam se"
