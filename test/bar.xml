@@ -13,6 +13,14 @@ and optional enters"</string>
         <item>25% / 75%</item>
         <item>0% / 100%</item>
     </string-array>
+    <string-array name="array-repeated">
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>string</item>
+        <item>string</item>
+    </string-array>
     <plurals name="unitCyclePlurals">
         <item quantity="one">%d cycle</item>
         <item quantity="other">%d cycles</item>

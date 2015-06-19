@@ -5,7 +5,7 @@ require 'csv'
 require 'diff/lcs'
 
 class WrongArgumentsException < StandardError; end
-$_version = '0.7'
+$_version = '0.7.1'
 $_convert = 'convert'
 $_synchronize = 'synchronize'
 $_merge = 'merge'
@@ -16,7 +16,8 @@ $_lang_map = {
     en: 'english',
     de: 'german',
     pl: 'polish',
-    it: 'italian'
+    it: 'italian',
+    fr: 'french'
 }
 
 class FormatConverter
@@ -34,6 +35,10 @@ class FormatConverter
       values = row[1..row.length]
       type = 'string'
       num = nil
+      if name.nil?
+        puts 'Nil row detected'
+        next
+      end
       if name.index '@'
         type, name, num = name.split '@'
       end
@@ -117,12 +122,13 @@ class FormatConverter
             array_map[name] = Hash.new if array_map[name].nil?
             array_map[name][lang] = content
           end
-          items.each { |item|
+          items.each_index { |index|
+            item = items[index]
             quantity = item['quantity']
             content = item['content']
             content = item if item.kind_of? String
             key = "#{tag}@#{name}"
-            key+= quantity.nil? ? "@##{items.find_index(item)}" : "@quantity=#{quantity}"
+            key+= quantity.nil? ? "@##{index}" : "@quantity=#{quantity}"
             unless content.nil?
               array_map[key] = Hash.new if array_map[key].nil?
               array_map[key][lang] = content
@@ -155,12 +161,13 @@ class FormatConverter
         content = element['content']
         items = element['item']
         array += [[name, content]] unless content.nil?
-        items.each { |item|
+        items.each_index { |index|
+          item = items[index]
           quantity = item['quantity']
           content = item['content']
           content = item if item.kind_of? String
           key = "#{tag}@#{name}"
-          key+= quantity.nil? ? "@##{items.find_index(item)}" : "@quantity=#{quantity}"
+          key+= quantity.nil? ? "@##{index}" : "@quantity=#{quantity}"
           array += [[key, content]]
         } unless items.nil?
       }
