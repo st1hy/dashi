@@ -5,7 +5,7 @@ require 'csv'
 require 'diff/lcs'
 
 class WrongArgumentsException < StandardError; end
-$_version = '0.7.1'
+$_version = '0.7'
 $_convert = 'convert'
 $_synchronize = 'synchronize'
 $_merge = 'merge'
@@ -27,7 +27,7 @@ class FormatConverter
     key_content = 'content'
     key_item = 'item'
     rows = Array.new
-    CSV.foreach(string) {|row| rows+=[row]}
+    CSV.foreach(string, encoding: "UTF-8") {|row| rows+=[row]}
     lang_types = rows[0][1..rows[0].length]
     lang_types.each { |lang| xml_lang[lang] = Hash.new}
     rows[1..rows.length].each do |row|
@@ -35,10 +35,10 @@ class FormatConverter
       values = row[1..row.length]
       type = 'string'
       num = nil
-      if name.nil?
-        puts 'Nil row detected'
-        next
-      end
+	  if name.nil?
+		puts 'Nil row detected'
+		next
+	  end
       if name.index '@'
         type, name, num = name.split '@'
       end
@@ -82,20 +82,26 @@ class FormatConverter
       xml_hash.each do |type, value_array|
         value_array.each do |value_hash|
           content = value_hash[key_content]
-          if !content.nil? && content.is_a?(String)
-            x.tag!(type, content, name: value_hash[key_name])
-          else
-            item = value_hash[key_item]
-            x.tag!(type, name:value_hash[key_name]) do
-              item.each { |i|
-                if i.is_a?(Hash)
-                  x.item(i[key_content],i.reject { |k| k == key_content })
-                else
-                  x.item i
-                end
-              }
-            end
-          end
+		  if content.nil?
+			item = value_hash[key_item]
+			if item.nil?
+				x.tag!(type, "", name: value_hash[key_name])
+			else
+				x.tag!(type, name:value_hash[key_name]) do
+				  item.each { |i|
+					if i.is_a?(Hash)
+					  x.item(i[key_content],i.reject { |k| k == key_content })
+					else
+					  x.item i
+					end
+				  }
+				end
+			end
+		  else
+		    if content.is_a?(String)
+              x.tag!(type, content, name: value_hash[key_name])  
+			end
+		  end
         end
       end
     end
@@ -123,7 +129,7 @@ class FormatConverter
             array_map[name][lang] = content
           end
           items.each_index { |index|
-            item = items[index]
+			item = items[index]
             quantity = item['quantity']
             content = item['content']
             content = item if item.kind_of? String
@@ -162,7 +168,7 @@ class FormatConverter
         items = element['item']
         array += [[name, content]] unless content.nil?
         items.each_index { |index|
-          item = items[index]
+		  item = items[index]
           quantity = item['quantity']
           content = item['content']
           content = item if item.kind_of? String
